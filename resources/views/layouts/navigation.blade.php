@@ -13,19 +13,19 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Inicio') }}
+                        {{ __('app.home') }}
                     </x-nav-link>
                     <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.*')">
-                        {{ __('Proyectos') }}
+                        {{ __('app.projects') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')">
-                        {{ __('Tareas') }}
+                        {{ __('app.tasks') }}
                     </x-nav-link>
                     <x-nav-link :href="route('task-priorities.index')" :active="request()->routeIs('task-priorities.*')">
-                        {{ __('Prioridades') }}
+                        {{ __('app.priorities') }}
                     </x-nav-link>
                     <x-nav-link :href="route('task-states.index')" :active="request()->routeIs('task-states.*')">
-                        {{ __('Estados') }}
+                        {{ __('app.states') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -75,7 +75,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('app.perfil') }}
+                            {{ __('app.profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -85,7 +85,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('app.cerrar_sesion') }}
+                                {{ __('app.close_session') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -112,7 +112,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('app.home') }}
             </x-responsive-nav-link>
         </div>
 
@@ -125,7 +125,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('app.perfil') }}
+                    {{ __('app.profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -135,7 +135,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('app.cerrar_sesion') }}
+                        {{ __('app.close_session') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
