@@ -14,12 +14,10 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Si existe un idioma guardado en sesión, lo aplicamos
         if (session()->has('locale')) {
             app()->setLocale(session('locale'));
         }
 
-        // En caso contrario, usa el idioma por defecto (config/app.php)
         return $next($request);
     }
 }
