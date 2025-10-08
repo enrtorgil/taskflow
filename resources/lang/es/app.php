@@ -40,6 +40,7 @@ return [
     'saved'                             => 'Guardado.',
     'states'                            => 'Estados',
     'tasks'                             => 'Tareas',
+    'toggle_dark_mode'                  => 'Cambiar tema',
     'update_password'                   => 'Actualizar contraseña',
     'update_password_description'       => 'Asegúrate de usar una contraseña larga y aleatoria para mantener tu cuenta segura.',
     'verification_link_sent'            => 'Se ha enviado un nuevo enlace de verificación a tu correo electrónico.',

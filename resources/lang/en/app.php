@@ -40,6 +40,7 @@ return [
     'saved'                             => 'Saved.',
     'states'                            => 'States',
     'tasks'                             => 'Tasks',
+    'toggle_dark_mode'                  => 'Toggle dark mode',
     'update_password'                   => 'Update Password',
     'update_password_description'       => 'Ensure your account is using a long, random password to stay secure.',
     'verification_link_sent'            => 'A new verification link has been sent to your email address.',
