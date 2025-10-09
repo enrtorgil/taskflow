@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date_end')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

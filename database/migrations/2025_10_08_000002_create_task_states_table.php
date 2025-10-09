@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('color', 7)->nullable(); // hex color (#3490dc)
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

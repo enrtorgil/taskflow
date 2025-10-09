@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId('task_id')->constrained('tasks')->cascadeOnDelete();
             $table->integer('points')->default(0); // e.g. story points or difficulty rating
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
