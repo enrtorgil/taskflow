@@ -4,10 +4,11 @@ namespace App\Models\Projects;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'tasks';
 
@@ -28,6 +29,17 @@ class Task extends Model
         'date_start' => 'datetime',
         'date_end'   => 'datetime',
     ];
+
+    protected static function booted()
+    {
+        static::restored(function ($task) {
+            $task->subtasks()->withTrashed()->get()->each->restore();
+            $task->comments()->withTrashed()->get()->each->restore();
+            $task->points()->withTrashed()->get()->each->restore();
+            $task->dependencies()->withTrashed()->get()->each->restore();
+            $task->activities()->withTrashed()->get()->each->restore();
+        });
+    }
 
     public function project()
     {

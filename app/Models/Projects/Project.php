@@ -4,10 +4,11 @@ namespace App\Models\Projects;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'projects';
 
@@ -24,6 +25,13 @@ class Project extends Model
         'date_end'   => 'date',
         'status'     => 'boolean',
     ];
+
+    protected static function booted()
+    {
+        static::restored(function ($project) {
+            $project->tasks()->withTrashed()->get()->each->restore();
+        });
+    }
 
     public function responsible()
     {
