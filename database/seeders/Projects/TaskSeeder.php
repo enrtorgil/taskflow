@@ -3,6 +3,10 @@ namespace Database\Seeders\Projects;
 
 use App\Models\Projects\Project;
 use App\Models\Projects\Task;
+use App\Models\Projects\TaskActivity;
+use App\Models\Projects\TaskComment;
+use App\Models\Projects\TaskDependency;
+use App\Models\Projects\TaskPoint;
 use App\Models\Projects\TaskPriority;
 use App\Models\Projects\TaskState;
 use App\Models\User;
@@ -56,9 +60,48 @@ class TaskSeeder extends Seeder
                 ],
             ];
 
+            $createdTasks = [];
+
             foreach ($tasks as $taskData) {
                 $task = Task::create($taskData);
                 $task->users()->attach($user->id);
+
+                // Comentario de ejemplo
+                TaskComment::create([
+                    'task_id' => $task->id,
+                    'user_id' => $user->id,
+                    'body'    => 'Comentario de prueba para la tarea "' . $task->name . '".',
+                ]);
+
+                // Puntos de ejemplo
+                TaskPoint::create([
+                    'task_id' => $task->id,
+                    'points'  => rand(1, 8),
+                ]);
+
+                // Actividad de ejemplo
+                TaskActivity::create([
+                    'task_id'       => $task->id,
+                    'user_id'       => $user->id,
+                    'field_changed' => 'state',
+                    'old_value'     => 'Nueva',
+                    'new_value'     => 'En curso',
+                ]);
+
+                $createdTasks[] = $task;
+            }
+
+            // Dependencias (la 2 depende de la 1, la 3 depende de la 2)
+            if (count($createdTasks) >= 3) {
+                TaskDependency::create([
+                    'task_id'            => $createdTasks[1]->id,
+                    'depends_on_task_id' => $createdTasks[0]->id,
+                ]);
+
+                TaskDependency::create([
+                    'task_id'            => $createdTasks[2]->id,
+                    'depends_on_task_id' => $createdTasks[1]->id,
+                ]);
             }
         }
     }
